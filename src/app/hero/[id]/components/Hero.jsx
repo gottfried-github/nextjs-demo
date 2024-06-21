@@ -1,3 +1,5 @@
+'use client'
+
 const Hero = ({ hero }) => {
   return <div>{hero.name}</div>
 }
