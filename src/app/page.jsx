@@ -1,9 +1,10 @@
-import axios from 'axios'
-
+import getHeroes from './api/heroes.js'
 import Heroes from './components/Heroes'
 
+export const revalidate = 3600
+
 const HeroesController = async () => {
-  const { data: heroesData } = await axios.get('http://sw-api.starnavi.io/people')
+  const heroesData = await getHeroes()
 
   return (
     <main>
