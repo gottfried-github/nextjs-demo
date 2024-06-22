@@ -1,13 +1,15 @@
 import { v4 as uuidv4 } from 'uuid'
-import axios from '@/utils/axios'
+import { getResourceById } from '@/app/api/resources'
 
 import Hero from './components/Hero'
+
+export const revalidate = 3600
 
 const HeroController = async ({ params }) => {
   const nodes = []
   const edges = []
 
-  const { data: hero } = await axios.get(`people/${params.id}`)
+  const hero = await getResourceById('people', params.id)
 
   /* construct the graph for ReactFlow */
   const nodeHero = {
@@ -23,7 +25,7 @@ const HeroController = async ({ params }) => {
   nodes.push(nodeHero)
 
   for (const filmId of hero.films) {
-    const { data: film } = await axios.get(`films/${filmId}`)
+    const film = await getResourceById('films', filmId)
 
     // create a React Flow handle for each film
     const handleFilm = { id: uuidv4() }
@@ -50,7 +52,7 @@ const HeroController = async ({ params }) => {
     const filmStarships = film.starships.filter(starship => hero.starships.includes(starship))
 
     for (const starshipId of filmStarships) {
-      const { data: starship } = await axios.get(`starships/${starshipId}`)
+      const starship = await getResourceById('starships', starshipId)
 
       // create a React Flow handle for each starship
       const handleStarship = { id: uuidv4() }
