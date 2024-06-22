@@ -48,3 +48,6 @@ If the data was in a local database, then fetching it on the server would make e
 
 ### Laying out the graph with Dagre
 I used a library, recommended by `react-flow`'s docs to automatically lay out the nodes.
+
+### Avoiding fetching referenced resources
+I didn't fetch the referenced resources (such as `hero.films` or `film.starships`) because it would take too long. The API is not realistic in this respect: in the real world these would be references in a database or something.
