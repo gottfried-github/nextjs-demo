@@ -9,38 +9,60 @@ const HeroController = async ({ params }) => {
 
   const { data: hero } = await axios.get(`people/${params.id}`)
 
-  const nodeHero = { id: uuidv4(), data: hero }
-  const handlesHero = []
+  /* construct the graph for ReactFlow */
+  const nodeHero = {
+    id: uuidv4(),
+    type: 'hero',
+    position: { x: 0, y: 0 },
+    data: {
+      data: hero,
+      handles: [],
+    },
+  }
 
-  nodes.push({ node: nodeHero, handles: handlesHero })
+  nodes.push(nodeHero)
 
   for (const filmId of hero.films) {
     const { data: film } = await axios.get(`films/${filmId}`)
 
+    // create a React Flow handle for each film
     const handleFilm = { id: uuidv4() }
-    handlesHero.push(handleFilm)
+    nodeHero.data.handles.push(handleFilm)
 
-    const nodeFilm = { id: uuidv4(), data: film }
+    // create a node for each film and connect it to the hero node
+    const nodeFilm = {
+      id: uuidv4(),
+      type: 'film',
+      position: { x: 300, y: 0 },
+      data: { data: film, handles: [] },
+    }
     const edgeFilm = {
       id: uuidv4(),
       source: nodeHero.id,
       target: nodeFilm.id,
       sourceHandle: handleFilm.id,
     }
-    const handlesFilm = []
 
-    nodes.push({ node: nodeFilm, handles: handlesFilm })
-    edges.push({ edge: edgeFilm })
+    nodes.push(nodeFilm)
+    edges.push(edgeFilm)
 
+    // get the intersection of starships in the hero and the film
     const filmStarships = film.starships.filter(starship => hero.starships.includes(starship))
 
     for (const starshipId of filmStarships) {
       const { data: starship } = await axios.get(`starships/${starshipId}`)
 
+      // create a React Flow handle for each starship
       const handleStarship = { id: uuidv4() }
-      handlesFilm.push(handleStarship)
+      nodeFilm.data.handles.push(handleStarship)
 
-      const nodeStarship = { id: uuidv4(), data: starship }
+      // create a node for each starship and connect it to the film node
+      const nodeStarship = {
+        id: uuidv4(),
+        type: 'starship',
+        position: { x: 600, y: 0 },
+        data: starship,
+      }
       const edgeStarship = {
         id: uuidv4(),
         source: nodeFilm.id,
@@ -48,8 +70,8 @@ const HeroController = async ({ params }) => {
         sourceHandle: handleStarship.id,
       }
 
-      nodes.push({ node: nodeStarship })
-      edges.push({ edge: edgeStarship })
+      nodes.push(nodeStarship)
+      edges.push(edgeStarship)
     }
   }
 

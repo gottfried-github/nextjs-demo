@@ -1,25 +1,43 @@
 'use client'
 
-import { v4 as uuidv4 } from 'uuid'
-import axios from 'axios'
+import { useMemo } from 'react'
+import Dagre from '@dagrejs/dagre'
 import ReactFlow from 'reactflow'
 import 'reactflow/dist/style.css'
 
 import HeroNode from './HeroNode'
+import FilmNode from './FilmNode'
+import StarshipNode from './StarshipNode'
+
+const g = new Dagre.graphlib.Graph().setDefaultEdgeLabel(() => ({}))
+
+const layOutNodes = (nodes, edges) => {
+  g.setGraph({ rankdir: 'LR', ranksep: 350 })
+
+  edges.forEach(edge => g.setEdge(edge.source, edge.target))
+  nodes.forEach(node => g.setNode(node.id, node))
+
+  Dagre.layout(g)
+
+  return {
+    nodes: nodes.map(node => {
+      const { x, y } = g.node(node.id)
+      return { ...node, position: { x, y } }
+    }),
+    edges,
+  }
+}
 
 const nodeTypes = {
   hero: HeroNode,
+  film: FilmNode,
+  starship: StarshipNode,
 }
 
 const Hero = ({ nodes, edges }) => {
-  // const nodes = [{ id: '0', type: 'hero', position: { x: 0, y: 0 }, data: { hero } }]
-  // const edges = []
+  const graphLaidOut = useMemo(() => layOutNodes(nodes, edges), [nodes, edges])
 
-  // return <ReactFlow nodeTypes={nodeTypes} nodes={nodes} edges={edges} />
-
-  console.log('Hero, nodes:', nodes)
-
-  return <div>test</div>
+  return <ReactFlow nodeTypes={nodeTypes} nodes={graphLaidOut.nodes} edges={graphLaidOut.edges} />
 }
 
 export default Hero
