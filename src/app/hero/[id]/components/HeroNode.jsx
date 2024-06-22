@@ -1,66 +1,78 @@
+import { useMemo } from 'react'
+
+import { truncate } from '@/utils/utils'
 import Node from './Node'
+import NodeGrid from './NodeGrid'
+import CellInfo from './CellInfo'
 
 const HeroNode = ({ data: { data, handles } }) => {
+  const films = useMemo(() => truncate(data.films), [data.films])
+  const starships = useMemo(() => truncate(data.starships), [data.starships])
+  const vehicles = useMemo(() => truncate(data.vehicles), [data.vehicles])
+
   return (
     <Node handles={handles}>
-      <div className="grid grid-cols-2">
+      <NodeGrid>
         <div>Name</div>
-        <div>{data.name}</div>
+        <CellInfo>{data.name}</CellInfo>
 
         <div>Birth Year</div>
-        <div>{data.birth_year}</div>
+        <CellInfo>{data.birth_year}</CellInfo>
 
         <div>Gender</div>
-        <div>{data.gender}</div>
+        <CellInfo>{data.gender}</CellInfo>
 
         <div>Eye Color</div>
-        <div>{data.eye_color}</div>
+        <CellInfo>{data.eye_color}</CellInfo>
 
         <div>Hair Color</div>
-        <div>{data.hair_color}</div>
+        <CellInfo>{data.hair_color}</CellInfo>
 
         <div>Skin Color</div>
-        <div>{data.skin_color}</div>
+        <CellInfo>{data.skin_color}</CellInfo>
 
         <div>Height</div>
-        <div>{data.height}</div>
+        <CellInfo>{data.height}</CellInfo>
 
         <div>Mass</div>
-        <div>{data.mass}</div>
+        <CellInfo>{data.mass}</CellInfo>
 
         <div>Species</div>
-        <div>{data.species}</div>
+        <CellInfo>{data.species}</CellInfo>
 
         <div>Homeworld</div>
-        <div>{data.homeworld}</div>
+        <CellInfo>{data.homeworld}</CellInfo>
 
         <div>Films</div>
         <div>
           <ul>
-            {data.films.map(film => (
+            {films.list.map(film => (
               <li key={film}>{film}</li>
             ))}
+            {films.hasMore ? <li>...</li> : null}
           </ul>
         </div>
 
         <div>Starships</div>
         <div>
           <ul>
-            {data.starships.map(starship => (
+            {starships.list.map(starship => (
               <li key={starship}>{starship}</li>
             ))}
+            {starships.hasMore ? <li>...</li> : null}
           </ul>
         </div>
 
         <div>Vehicles</div>
         <div>
           <ul>
-            {data.vehicles.map(vehicle => (
+            {vehicles.list.map(vehicle => (
               <li key={vehicle}>{vehicle}</li>
             ))}
+            {vehicles.hasMore ? <li>...</li> : null}
           </ul>
         </div>
-      </div>
+      </NodeGrid>
     </Node>
   )
 }

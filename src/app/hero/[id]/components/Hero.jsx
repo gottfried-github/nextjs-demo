@@ -12,7 +12,7 @@ import StarshipNode from './StarshipNode'
 const g = new Dagre.graphlib.Graph().setDefaultEdgeLabel(() => ({}))
 
 const layOutNodes = (nodes, edges) => {
-  g.setGraph({ rankdir: 'LR', ranksep: 350 })
+  g.setGraph({ rankdir: 'LR', ranksep: 800, nodesep: 800 })
 
   edges.forEach(edge => g.setEdge(edge.source, edge.target))
   nodes.forEach(node => g.setNode(node.id, node))
