@@ -1,10 +1,8 @@
-import { Handle, Position } from 'reactflow'
+import Node from './Node'
 
 const HeroNode = ({ data: { data, handles } }) => {
-  console.log('HeroNode, data.data:', data.data)
-
   return (
-    <div className="flex">
+    <Node handles={handles}>
       <div className="grid grid-cols-2">
         <div>Name</div>
         <div>{data.name}</div>
@@ -63,20 +61,7 @@ const HeroNode = ({ data: { data, handles } }) => {
           </ul>
         </div>
       </div>
-      <div className="flex flex-col gap-y-4">
-        {handles.map(handle => (
-          <Handle
-            style={{
-              position: 'relative',
-            }}
-            key={handle.id}
-            type="source"
-            id={handle.id}
-            position={Position.Right}
-          />
-        ))}
-      </div>
-    </div>
+    </Node>
   )
 }
 

@@ -1,15 +1,10 @@
-import { v4 as uuidv4 } from 'uuid'
-import { Handle, Position } from 'reactflow'
+import Node from './Node'
 
-const FilmNode = ({ data }) => {
+const FilmNode = ({ data: { data, handles } }) => {
   return (
-    <>
-      <Handle type="target" id={uuidv4()} position={Position.Left} />
+    <Node targetHandle handles={handles}>
       <div>{'film'}</div>
-      {data.handles.map(handle => (
-        <Handle key={handle.id} type="source" id={handle.id} position={Position.Right} />
-      ))}
-    </>
+    </Node>
   )
 }
 

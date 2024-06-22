@@ -1,13 +1,11 @@
-import { v4 as uuidv4 } from 'uuid'
-import { Handle, Position } from 'reactflow'
+import Node from './Node'
 
-const FilmNode = ({ data }) => {
+const StarshipNode = ({ data: { data } }) => {
   return (
-    <>
-      <Handle type="target" id={uuidv4()} position={Position.Left} />
+    <Node targetHandle>
       <div>{'starship'}</div>
-    </>
+    </Node>
   )
 }
 
-export default FilmNode
+export default StarshipNode
