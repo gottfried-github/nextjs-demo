@@ -3,7 +3,7 @@ import { Handle, Position } from 'reactflow'
 
 const Node = ({ handles, targetHandle, children }) => {
   return (
-    <div className="flex">
+    <div className="flex p-4 bg-white rounded shadow-lg">
       {targetHandle ? <Handle type="target" id={uuidv4()} position={Position.Left} /> : null}
       <div>{children}</div>
       {handles?.length ? (

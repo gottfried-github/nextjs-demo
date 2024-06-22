@@ -45,3 +45,6 @@ I fetch all the data for the graph on the server, so that I don't have to includ
 In any case I'd need to fetch all the data before displaying the graph.
 
 If the data was in a local database, then fetching it on the server would make even more sense since that would save a lot of network requests.
+
+### Laying out the graph with Dagre
+I used a library, recommended by `react-flow`'s docs to automatically lay out the nodes.

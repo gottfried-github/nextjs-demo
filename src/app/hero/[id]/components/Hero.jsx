@@ -2,7 +2,7 @@
 
 import { useMemo } from 'react'
 import Dagre from '@dagrejs/dagre'
-import ReactFlow from 'reactflow'
+import ReactFlow, { Controls } from 'reactflow'
 import 'reactflow/dist/style.css'
 
 import HeroNode from './HeroNode'
@@ -37,7 +37,18 @@ const nodeTypes = {
 const Hero = ({ nodes, edges }) => {
   const graphLaidOut = useMemo(() => layOutNodes(nodes, edges), [nodes, edges])
 
-  return <ReactFlow nodeTypes={nodeTypes} nodes={graphLaidOut.nodes} edges={graphLaidOut.edges} />
+  return (
+    <ReactFlow
+      nodeTypes={nodeTypes}
+      nodes={graphLaidOut.nodes}
+      edges={graphLaidOut.edges}
+      style={{
+        background: 'rgb(248, 250, 252)',
+      }}
+    >
+      <Controls />
+    </ReactFlow>
+  )
 }
 
 export default Hero
