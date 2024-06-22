@@ -31,7 +31,7 @@ const HeroesController = ({ data }) => {
   }
 
   return (
-    <div className="flex flex-col min-w-96 m-auto p-4 gap-y-4 bg-white rounded shadow-lg">
+    <div className="flex flex-col sm:min-w-96 m-auto p-4 gap-y-4 bg-white rounded shadow-lg">
       <Heroes heroes={_heroes} />
       <div className="flex justify-center gap-x-1.5">
         <button
