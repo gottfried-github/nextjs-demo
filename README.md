@@ -38,3 +38,10 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ## Notes
 ### Caching and revalidating
 In the "heroes" section, I set up caching manually, since I'm using `axios` instead of `fetch`. I use `react`'s `cache` function to cache the results of the API call, and I set up `revalidate` route setting to 1 hour.
+
+### Building up the graph on the server
+I fetch all the data for the graph on the server, so that I don't have to include `axios` in the client bundle. 
+
+In any case I'd need to fetch all the data before displaying the graph.
+
+If the data was in a local database, then fetching it on the server would make even more sense since that would save a lot of network requests.
