@@ -61,7 +61,7 @@ const HeroController = async ({ params }) => {
         id: uuidv4(),
         type: 'starship',
         position: { x: 600, y: 0 },
-        data: starship,
+        data: { data: starship },
       }
       const edgeStarship = {
         id: uuidv4(),
