@@ -1,16 +1,17 @@
-import getHeroes from './api/heroes.js'
-import Heroes from './components/Heroes'
+import { getResource } from './api/resources'
+import HeroesController from './components/HeroesController'
 
 export const revalidate = 3600
 
-const HeroesController = async () => {
-  const heroesData = await getHeroes()
+const HeroesServerController = async () => {
+  const data = await getResource('people')
+  console.log('HeroesController, data:', data)
 
   return (
-    <main>
-      <Heroes heroes={heroesData.results} />
+    <main className="flex min-h-screen bg-slate-50">
+      <HeroesController data={data} />
     </main>
   )
 }
 
-export default HeroesController
+export default HeroesServerController

@@ -36,18 +36,21 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 ## Notes
-### Caching and revalidating
+### Server: caching and revalidating
 In the "heroes" section, I set up caching manually, since I'm using `axios` instead of `fetch`. I use `react`'s `cache` function to cache the results of the API call, and I set up `revalidate` route setting to 1 hour.
 
-### Building up the graph on the server
-I fetch all the data for the graph on the server, so that I don't have to include `axios` in the client bundle. 
+### Heroes: fetching initial page on the server
+In the `heroes` route, I fetch the initial page on the server and send it to the client component via props. This way I save a network request on the client.
+
+### Hero: building up the graph on the server
+I fetch all the data for the graph on the server, before rendering it on the client. 
+
+I do this because that way I don't have to include `axios` in the client bundle, at least for the `hero` route. Also, on the server, the data is cached so initial page render on the client could be faster. Also, the data could be stored in a local database and fetching it all on the server could save some network requests.
 
 In any case I'd need to fetch all the data before displaying the graph.
 
-If the data was in a local database, then fetching it on the server would make even more sense since that would save a lot of network requests.
-
-### Laying out the graph with Dagre
+### Hero: laying out the graph with Dagre
 I used a library, recommended by `react-flow`'s docs to automatically lay out the nodes.
 
-### Avoiding fetching referenced resources
+### Hero: avoiding fetching referenced resources
 I didn't fetch the referenced resources (such as `hero.films` or `film.starships`) because it would take too long. The API is not realistic in this respect: in the real world these would be references in a database or something.
