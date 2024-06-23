@@ -63,3 +63,6 @@ I used a library, recommended by `react-flow`'s docs to automatically lay out th
 
 ### Hero: avoiding fetching referenced resources
 I didn't fetch the referenced resources (such as `hero.films` or `film.starships`) because it would take too long. The API is not realistic in this respect: in the real world these would be references in a database or something.
+
+### Hero: truncating data
+In the graph's nodes, I truncated lists of resources so that the nodes aren't too large.

@@ -9,6 +9,7 @@ const HeroController = async ({ params }) => {
 
   const filmsFeatured = []
 
+  // fetch resources for the graph
   for (const filmId of hero.films) {
     const film = await getResourceById('films', filmId)
 
