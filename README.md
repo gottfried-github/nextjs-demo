@@ -35,6 +35,14 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
+## Test scenarios
+### Heroes page
+I tested:
+
+1. whether mock data is displayed
+2. whether pagination buttons work correctly
+3. whether axios gets correct url when pagination buttons are clicked
+
 ## Notes
 ### Server: caching and revalidating
 In the "heroes" section, I set up caching manually, since I'm using `axios` instead of `fetch`. I use `react`'s `cache` function to cache the results of the API call, and I set up `revalidate` route setting to 1 hour.
