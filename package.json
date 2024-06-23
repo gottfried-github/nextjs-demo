@@ -10,13 +10,18 @@
     "test": "jest"
   },
   "dependencies": {
+    "@dagrejs/dagre": "^1.1.2",
+    "axios": "^1.7.2",
     "next": "14.2.4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "reactflow": "^11.11.4",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^16.0.0",
+    "@testing-library/user-event": "^14.5.2",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
     "eslint-config-prettier": "^9.1.0",
