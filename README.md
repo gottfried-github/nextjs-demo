@@ -43,6 +43,9 @@ I tested:
 2. whether pagination buttons work correctly
 3. whether axios gets correct url when pagination buttons are clicked
 
+### Hero page
+I tested whether the page displays mock data.
+
 ## Notes
 ### Server: caching and revalidating
 In the "heroes" section, I set up caching manually, since I'm using `axios` instead of `fetch`. I use `react`'s `cache` function to cache the results of the API call, and I set up `revalidate` route setting to 1 hour.

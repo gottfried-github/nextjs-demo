@@ -36,8 +36,6 @@ const nodeTypes = {
 }
 
 const Hero = ({ hero }) => {
-  console.log('Hero, hero:', hero)
-
   /* construct the graph for ReactFlow */
   const graph = useMemo(() => {
     const nodes = []
