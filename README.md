@@ -55,8 +55,6 @@ I fetch all the data for the graph on the server, before rendering it on the cli
 
 I do this because that way I don't have to include `axios` in the client bundle, at least for the `hero` route. Also, on the server, the data is cached so initial page render on the client could be faster. Also, the data could be stored in a local database and fetching it all on the server could save some network requests.
 
-In any case I'd need to fetch all the data before displaying the graph.
-
 ### Hero: laying out the graph with Dagre
 I used a library, recommended by `react-flow`'s docs to automatically lay out the nodes.
 
