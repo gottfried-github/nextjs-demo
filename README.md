@@ -2,6 +2,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 See it live [here](https://nextjs-demo-weld-five.vercel.app/).
 
+See video presentation [here](https://drive.google.com/file/d/1hHrO8QHSJTjCjZzRAqqbkILsLsXIlARx/view?usp=sharing)
+
 ## Run and test the app
 First, clone the repo.
 
