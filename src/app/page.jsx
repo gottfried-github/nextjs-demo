@@ -1,4 +1,4 @@
-import { getResource } from './api/resources'
+import { getResource } from '@/api/resources'
 import HeroesController from './components/HeroesController'
 
 export const revalidate = 3600

@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid'
-import { getResourceById } from '@/app/api/resources'
+import { getResourceById } from '@/api/resources'
 
 import Hero from './components/Hero'
 
